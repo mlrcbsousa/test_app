@@ -1,0 +1,15 @@
+version: '2'
+services:
+  test:
+    build: .
+    command: bundle exec rspec
+    container_name: test_app
+    environment:
+      - SELENIUM_REMOTE_HOST=selenium
+    volumes:
+      - .:/app
+    depends_on:
+      - selenium
+  selenium:
+    image: selenium/standalone-chrome
+    container_name: selenium
